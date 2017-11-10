@@ -13,14 +13,8 @@ global N_CS epsilon_0 N_species
 t_G = 0;
 
 %==================================================================
-% USER-DEFINED ZONE
+% SIMULATION ENGINE
 %==================================================================
-% NOTE: Insert here any functions or calculation that need to be calculated
-% outside the while loop to save on computational time.
-
-% PLG Rapid SS Calculation
-
-[X,Cs_PLG] = quasiSteadyPLGCalculation(X, I, 2.2*epsilon_0);
 
 
     % START OF WHILE LOOP
@@ -37,7 +31,7 @@ t_G = 0;
         % CALCULATE VALUE OF PROPENSITY FUNCTION
         %==================================================================
         
-        a = propensityFunction(X,Cs_tPA, Cs_PLG, Cs_PLS,epsilon);
+        a = propensityFunction(X);
         
         %==================================================================
         % COMPUTE TIME-STEP AND REACTION INDEX
@@ -53,13 +47,6 @@ t_G = 0;
             break;
         end
         
-        
-    if in >= 2*N_CS + 1 && in <= 3*N_CS 
-       
-        I(in - 2*N_CS) = I(in - 2*N_CS) + 1;
-        
-    end
-        
         %==================================================================
         % UPDATE SIMULATION TIME 
         %==================================================================
@@ -74,21 +61,7 @@ t_G = 0;
         % UPDATE STATE VECTOR
         %==================================================================
         
-        CS_ind = rem(in,N_CS);
-                
-        if CS_ind == 0
-           CS_ind = N_CS; 
-        end
-
-        rxn_ind = (in - CS_ind)/N_CS + 1;
-                
-        for it_inner = 1:N_species
-            
-            X((it_inner-1)*N_CS + CS_ind) = X((it_inner-1)*N_CS + CS_ind) + v(rxn_ind,it_inner);
-                       
-        end
-        
-        %X = X + v(in,:);
+        X = X + v(in,:);
         
     end
     %END OF WHILE LOOP
