@@ -55,7 +55,7 @@ represents the derivative of the first component with respect to time.
 In your main Matlab file, specify a timestep (delta_t) and the initial value of your variables (@ time = 0). Put the main equation in a for loop and update the time after ever timestep. 
 
 ```
-input = zeros(1,3)
+input = zeros(1,N_eqns)
 
 for it = 2:nt
     
@@ -63,6 +63,8 @@ for it = 2:nt
     current_t = (it-1)*delta_t;
     
     sol = rungeKuttaFourth(input, current_t, delta_t);
+
+ end
 ```
 
 
