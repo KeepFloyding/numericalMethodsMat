@@ -18,8 +18,9 @@ A few test cases have been set up in test that showcases the use of the models i
 
 runTestAll.py runs both the Runge-Kutta test file and the Gillespie test file and compares the results with a plot. You should get something like the following image:
 
-![alt tag](https://github.com/KeepFloyding/numericalMethodsMat/tree/master/test/testImage.png)
+![testimage](https://user-images.githubusercontent.com/29730122/32693828-2d8bce30-c729-11e7-9dbe-b9432139ab9c.png)
 
+where the smooth lines are the results calculated by Runge-Kutta methods and the erratic lines are those solved by the Gillespie method. 
 
 ## Deploying
 
