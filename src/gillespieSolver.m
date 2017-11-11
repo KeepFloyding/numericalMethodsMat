@@ -3,7 +3,7 @@
 % should any variables need to be computed outside the while loop.
 % Otherwise, don't touch the other parts.
 
-function [X_nx,Cs_PLG,I] = gillespieSolver(X,v, delta_t,propensityFunction)
+function X_nx = gillespieSolver(X,v, delta_t,propensityFunction)
 
 
 %==================================================================

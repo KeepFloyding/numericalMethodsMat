@@ -14,29 +14,43 @@ Simply copy the Matlab files in src to your working directory, make sure that th
 
 ### Testing 
 
-A few test cases have been set up in test that showcases the use of the models in solving differential equations. Simply run runTestRK.m in Matlab console for instance. 
+A few test cases have been set up in test that showcases the use of the models in solving differential equations. For instance, to test Runge-Kutta, simply run runTestRK.m in Matlab console. 
+
+runTestAll.py runs both the Runge-Kutta test file and the Gillespie test file and compares the results with a plot. You should get something like the following image:
+
+![alt text](https://github.com/KeepFloyding/numericalMethodsMat/tree/master/testImage.png)
+
 
 ## Deploying
 
 ### Gillespie stochastic method
 
-You will need to edit the following files
+This method requires the following:
 
-* stochiometryMatrix.m as per the stochiometry of your reactions
+* Intial state array (X)
+* a timestep (dt)
+* stochiometry matrix (v)
 * propensityFunction.m as per the reaction rate of each reaction and species. 
 
-Specify an intial state array (X), a timestep (dt), stochiometry matrix (v) and a propensity function. 
-
-Make sure to update the state array after every timestep.
+In reality the model can simply be called as 
 
 ```
-X = zeros(1,N_species,'single')
+X_nx = gillespieSolver(X,v, final_time, @propensityFunction);
+```
+
+to get the value of the state array at the specified final_time. Since Gillespie's method gives a non-uniform time according to the values of the propensity function, it can be editted as follows to save values at every timestep dt. 
+
+```
+X = [N_A, N_B, N_C]
 
 for it = 2:nt
 	X_nx = gillespieSolver(X,v, delta_t,@propensityFunction);
 	X = X_nx;
 end
 ```
+
+Make sure to update the state array after every timestep.
+
 
 ### Runge-Kutta method
 

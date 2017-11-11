@@ -19,11 +19,11 @@ C_c = zeros(nt);
 global k_f k_r
 
 % Factor to turn moles into molecules
-U_0 = 10; %volume of system;
+U_0 = 1; %volume of system;
 N_AV = 6.02E23; % Avogadro's number
 F = U_0*1E-6*1E-15*N_AV;
 
-k_f = 1*F;
+k_f = 1/F;
 k_r = 1;
 
 % Stochiometry Matrix
@@ -38,10 +38,9 @@ v(2,:) = [1,1,-1];
 
 % State arrray (initial conditions)
 X = [1*F, 0.5*F, 0];
-C_a(1) = 1*F;
-C_b(1) = 0.5*F;
+C_a(1) = 1;
+C_b(1) = 0.5;
 C_c(1) = 0;
-
 
 for it = 2:nt
     
@@ -53,9 +52,9 @@ for it = 2:nt
 	X_nx = gillespieSolver(X,v, delta_t,@propensityFunction);
     
     % Store variables
-    C_a(it) = X_nx(1);
-    C_b(it) = X_nx(2);
-    C_c(it) = X_nx(3);
+    C_a(it) = X_nx(1)/F;
+    C_b(it) = X_nx(2)/F;
+    C_c(it) = X_nx(3)/F;
     
     % Update the state array
 	X = X_nx;
