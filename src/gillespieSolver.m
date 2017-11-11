@@ -3,8 +3,8 @@
 % should any variables need to be computed outside the while loop.
 % Otherwise, don't touch the other parts.
 
-function [X_nx,Cs_PLG,I] = gillespieSolver(X,v, delta_t,propensityFunction,Cs_tPA, Cs_PLG, Cs_PLS,epsilon,I)
-global N_CS epsilon_0 N_species
+function [X_nx,Cs_PLG,I] = gillespieSolver(X,v, delta_t,propensityFunction)
+
 
 %==================================================================
 % INITIALISING ALL VARIABLES
