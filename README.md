@@ -10,11 +10,11 @@ This repository contains Matlab functions of several popular numerical methods f
 
 ### Installing 
 
-Simply copy the Matlab files in src to your working directory, make sure that it is included in your path and call as required. 
+Simply copy the Matlab files in src to your working directory, make sure that the file is included in your path and call as required. 
 
 ### Testing 
 
-A few test cases have been set up in test that showcases the use of the models in solving differential equations. Simply run runAll.m in Matlab console. 
+A few test cases have been set up in test that showcases the use of the models in solving differential equations. Simply run runTestRK.m in Matlab console for instance. 
 
 ## Deploying
 
@@ -55,14 +55,16 @@ represents the derivative of the first component with respect to time.
 In your main Matlab file, specify a timestep (delta_t) and the initial value of your variables (@ time = 0). Put the main equation in a for loop and update the time after ever timestep. 
 
 ```
-input = zeros(1,N_eqns)
+input = [x; y; z];
 
 for it = 2:nt
     
-    input = [x; y; z];
     current_t = (it-1)*delta_t;
     
     sol = rungeKuttaFourth(input, current_t, delta_t);
+
+    % Update the input
+    input = [sol(1);sol(2);sol(3)]
 
  end
 ```
