@@ -18,7 +18,7 @@ A few test cases have been set up in test that showcases the use of the models i
 
 runTestAll.py runs both the Runge-Kutta test file and the Gillespie test file and compares the results with a plot. You should get something like the following image:
 
-![my-image](https://github.com/KeepFloyding/numericalMethodsMat/tree/master/test/testImage.png)
+![alt tag](https://github.com/KeepFloyding/numericalMethodsMat/tree/master/test/testImage.png)
 
 
 ## Deploying
